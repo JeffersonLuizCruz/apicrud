@@ -19,8 +19,8 @@ public class Payment implements Serializable{
 	private Integer stage;
 	
 	@OneToOne
-	@JoinColumn(name = "request_id")
 	@MapsId
+	@JoinColumn(name = "request_id")
 	private Request request;
 
 	public Payment() {
