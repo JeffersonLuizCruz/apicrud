@@ -1,6 +1,7 @@
 package com.financial.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,12 +27,12 @@ public class Product implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private Double amount;
+	private BigDecimal price;
 	
 
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "products_gategories",
+	@JoinTable(name = "products_categories",
 			joinColumns = @JoinColumn(name = "product_id"),
 			inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories = new ArrayList<>();
@@ -43,10 +44,10 @@ public class Product implements Serializable{
 	public Product() {
 	}
 
-	public Product(Long id, String name, Double amount) {
+	public Product(Long id, String name, BigDecimal price) {
 		this.id = id;
 		this.name = name;
-		this.amount = amount;
+		this.price = price;
 	}
 	
 	@JsonIgnore
@@ -74,12 +75,12 @@ public class Product implements Serializable{
 		this.name = name;
 	}
 
-	public Double getAmount() {
-		return amount;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public void setAmount(Double amount) {
-		this.amount = amount;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	public List<Category> getCategories() {

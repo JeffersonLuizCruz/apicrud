@@ -1,6 +1,7 @@
 package com.financial.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -15,15 +16,15 @@ public class ItemRequest implements Serializable{
 	@EmbeddedId
 	private ItemRequestPK id = new ItemRequestPK();
 	
-	private Double discount; // Desconto
+	private BigDecimal discount; // Desconto
 	private Integer amount; // Quantidade
-	private Double price; // Preço
+	private BigDecimal price; // Preço
 	
 	
 	public ItemRequest() {
 	}
 
-	public ItemRequest(Request request, Product product, Double discount, Integer amount, Double price) {
+	public ItemRequest(Request request, Product product, BigDecimal discount, Integer amount, BigDecimal price) {
 		this.id.setRequest(request);
 		this.id.setProduct(product);
 		this.discount = discount;
@@ -48,11 +49,11 @@ public class ItemRequest implements Serializable{
 		this.id = id;
 	}
 
-	public Double getDiscount() {
+	public BigDecimal getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(Double discount) {
+	public void setDiscount(BigDecimal discount) {
 		this.discount = discount;
 	}
 
@@ -64,11 +65,11 @@ public class ItemRequest implements Serializable{
 		this.amount = amount;
 	}
 
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

@@ -31,7 +31,7 @@ public class Customer implements Serializable{
 	
 	@ElementCollection
 	@CollectionTable(name="TELEPHONE")
-	private Set<String> phones = new HashSet<>();
+	private HashSet<String> phones = new HashSet<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "customer")
@@ -95,7 +95,7 @@ public class Customer implements Serializable{
 		return phones;
 	}
 
-	public void setPhones(Set<String> phones) {
+	public void setPhones(HashSet<String> phones) {
 		this.phones = phones;
 	}
 
