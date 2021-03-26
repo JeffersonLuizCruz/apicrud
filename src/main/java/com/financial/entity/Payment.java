@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import com.financial.entity.enums.StagePayment;
 
 @Entity
-public class Payment implements Serializable{
+public abstract class Payment implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id

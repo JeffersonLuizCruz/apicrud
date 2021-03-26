@@ -34,12 +34,12 @@ public class CategoryTest {
 		cat2.getProducts().addAll(Arrays.asList(p1, p2));
 		cat3.getProducts().addAll(Arrays.asList(p6));
 		
-		p1.getCategories().addAll(Arrays.asList(cat1));
-		p2.getCategories().addAll(Arrays.asList(cat1));
-		p3.getCategories().addAll(Arrays.asList(cat2));
-		p4.getCategories().addAll(Arrays.asList(cat2));
-		p5.getCategories().addAll(Arrays.asList(cat2));
-		p6.getCategories().addAll(Arrays.asList(cat3));
+//		p1.getCategories().addAll(Arrays.asList(cat2));
+//		p2.getCategories().addAll(Arrays.asList(cat2));
+//		p3.getCategories().addAll(Arrays.asList(cat1));
+//		p4.getCategories().addAll(Arrays.asList(cat1));
+//		p5.getCategories().addAll(Arrays.asList(cat1));
+//		p6.getCategories().addAll(Arrays.asList(cat3));
 		
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6));
