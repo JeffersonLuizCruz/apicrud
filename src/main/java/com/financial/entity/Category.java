@@ -27,7 +27,7 @@ public class Category implements Serializable{
 	
 	//@ManyToMany(mappedBy = "categories")
 	@JsonIgnore
-	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name = "categories_products",
 			joinColumns = @JoinColumn(name = "category_id"),
 			inverseJoinColumns = @JoinColumn(name = "product_id"))
