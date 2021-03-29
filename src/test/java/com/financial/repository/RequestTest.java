@@ -1,7 +1,7 @@
 package com.financial.repository;
 
+import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,37 +10,32 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.financial.entity.Address;
 import com.financial.entity.City;
 import com.financial.entity.Customer;
+import com.financial.entity.Request;
 import com.financial.entity.State;
-import com.financial.entity.enums.TypeCustomer;
 
 @SpringBootTest
-public class CustomerTest {
-	
+public class RequestTest {
 	@Autowired private CustomerRepository customerRepository;
 	@Autowired private AddressRepository addressRepository;
-	@Autowired private StateRepository stateRepository;
 	@Autowired private CityRepository cityRepository;
+	@Autowired private StateRepository stateRepository;
 	
 	@Test
-	public void saveCustomerTest() {
+	public void requestTest() {
+		OffsetDateTime odt = OffsetDateTime.now();
+		Customer customer = new Customer();
 		State state = new State(null, "Pernambuco");
-		City city = new City(null, "Lagoa dos Gatos", state);
-		
-		
-		Customer customer = new Customer(null, "Jefferson Luiz", "jefferson@gmail.com", "08575874490", TypeCustomer.NATURAL_PERSON);
+		City city = new City(null, "Ipojuca", state);
 
-		customer.getPhones().addAll(Set.of("88053521", "88053522"));	
-		Address address = new Address(
-				null, "Alcides Alburquerques",
-				"15", "Ao lado da casa Elisabete",
-				"Distrito Centro", "55592000", city);
+		Address address = new Address(null, "Cavalo Marinho", "15", "Didinho", "Ipojuca", "5592000", city);
+		Request request = new Request(null, odt, address);
 		
-		customer.getAddress().addAll(List.of(address));
+		customer.getRequests().addAll(List.of(request));
 		
 		stateRepository.save(state);
 		cityRepository.save(city);
-		customerRepository.save(customer);
 		addressRepository.save(address);
+		customerRepository.save(customer);
 	}
 
 }

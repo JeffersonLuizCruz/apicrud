@@ -12,10 +12,10 @@ public class PaymentSlip extends Payment{
 	private static final long serialVersionUID = 1L;
 
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private OffsetDateTime dueDate = OffsetDateTime.now();
+	private OffsetDateTime dueDate;
 
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private OffsetDateTime payDay = OffsetDateTime.now();
+	private OffsetDateTime payDay;
 
 	public PaymentSlip() {
 	}

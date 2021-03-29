@@ -26,18 +26,18 @@ public class Request implements Serializable{
 	private Integer id;
 	
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
-	private OffsetDateTime instant = OffsetDateTime.now();
+	private OffsetDateTime instant;
 	
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "request")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "request")
 	private Payment payment;
 	
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private Customer customer;
+//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JoinColumn(name = "customer_id")
+//	private Customer customer;
 
 	@OneToMany(mappedBy = "id.request")
 	private Set<ItemRequest> items = new HashSet<>();
@@ -45,12 +45,11 @@ public class Request implements Serializable{
 	public Request() {
 	}
 
-	public Request(Integer id, OffsetDateTime instant, Address address, Customer customer) {
+	public Request(Integer id, OffsetDateTime instant, Address address) {
 		super();
 		this.id = id;
 		this.instant = instant;
 		this.address = address;
-		this.customer = customer;
 	}
 	
 
@@ -84,14 +83,6 @@ public class Request implements Serializable{
 
 	public void setAddress(Address address) {
 		this.address = address;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 	public Set<ItemRequest> getItems() {

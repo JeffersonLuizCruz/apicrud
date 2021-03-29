@@ -6,15 +6,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.financial.entity.enums.TypeCustomer;
 
 @Entity
@@ -33,11 +34,14 @@ public class Customer implements Serializable{
 	@CollectionTable(name="TELEPHONE")
 	private Set<String> phones = new HashSet<>();
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "customer")
+	//unidirecional
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "request_id")
 	private List<Request> requests = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "customer")
+	//@OneToMany(mappedBy = "customer")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "address_id")
 	private List<Address> address = new ArrayList<>();
 
 	public Customer() {
@@ -105,6 +109,14 @@ public class Customer implements Serializable{
 
 	public void setAddress(List<Address> address) {
 		this.address = address;
+	}
+
+	public List<Request> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
 	}
 
 	@Override

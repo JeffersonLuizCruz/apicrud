@@ -1,8 +1,6 @@
 package com.financial.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Address implements Serializable{
@@ -25,30 +22,29 @@ public class Address implements Serializable{
 	private String district;
 	private String zipCode;
 	
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private Customer customer;
+//	Unidirecional	
+//	@ManyToOne
+//	@JoinColumn(name = "customer_id")
+//	private Customer customer;
 	
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
 	
-	//OBS
-	@OneToMany(mappedBy = "address")
-	private List<Request> requests = new ArrayList<>();
+//	Unidirecional
+//	@OneToMany(mappedBy = "address")
+//	private List<Request> requests = new ArrayList<>();
 	
 	public Address() {
 	}
 
-	public Address(Long id, String street, String number, String complement, String district, String zipCode,
-			Customer customer, City city) {
+	public Address(Long id, String street, String number, String complement, String district, String zipCode, City city) {
 		this.id = id;
 		this.street = street;
 		this.number = number;
 		this.complement = complement;
 		this.district = district;
 		this.zipCode = zipCode;
-		this.customer = customer;
 		this.city = city;
 	}
 
@@ -98,14 +94,6 @@ public class Address implements Serializable{
 
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 	public City getCity() {
