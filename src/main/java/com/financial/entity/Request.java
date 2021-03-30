@@ -23,7 +23,7 @@ public class Request implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private OffsetDateTime instant;
@@ -45,7 +45,7 @@ public class Request implements Serializable{
 	public Request() {
 	}
 
-	public Request(Integer id, OffsetDateTime instant, Address address) {
+	public Request(Long id, OffsetDateTime instant, Address address) {
 		super();
 		this.id = id;
 		this.instant = instant;
@@ -53,11 +53,11 @@ public class Request implements Serializable{
 	}
 	
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
