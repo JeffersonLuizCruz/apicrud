@@ -8,12 +8,9 @@
 
 <p align="center">Exemplo de um Sistema E-Commerce</p>
 
-<p align="center">
-  <a href="https://www.linkedin.com/in/jefferson-luiz-cruz-0aa13a59/">?Jefferson Luiz=Linkedin=appveyor
-    <img alt="Made by Jefferson Luiz">
-  </a>
 
-</p>
+[![Linkedin Badge](https://img.shields.io/badge/-Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/jefferson-luiz-cruz-0aa13a59/)](https://www.linkedin.com/in/jefferson-luiz-cruz-0aa13a59/) 
+
 
 <p align="center">
   <a href="#-sobre">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
