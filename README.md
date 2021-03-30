@@ -8,9 +8,7 @@
 
 <p align="center">Exemplo de um Sistema E-Commerce</p>
 
-<p align="center">
 ![GitHub repo size](https://img.shields.io/github/repo-size/JeffersonLuizCruz/financial)
-</p>
 
 <p align="center">
   <a href="#-sobre">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
