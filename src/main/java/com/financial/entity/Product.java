@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +36,7 @@ public class Product implements Serializable{
 //	private List<Category> categories = new ArrayList<>();
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "id.product")
+	@OneToMany(mappedBy = "id.product", fetch = FetchType.EAGER)
 	private Set<ItemRequest> items = new HashSet<>();
 	
 	public Product() {
@@ -80,6 +81,13 @@ public class Product implements Serializable{
 		this.price = price;
 	}
 
+	public Set<ItemRequest> getItems() {
+		return items;
+	}
+
+	public void setItems(Set<ItemRequest> items) {
+		this.items = items;
+	}
 
 	@Override
 	public int hashCode() {

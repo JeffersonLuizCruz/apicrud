@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,7 +40,7 @@ public class Request implements Serializable{
 //	@JoinColumn(name = "customer_id")
 //	private Customer customer;
 
-	@OneToMany(mappedBy = "id.request")
+	@OneToMany(mappedBy = "id.request", fetch = FetchType.EAGER)
 	private Set<ItemRequest> items = new HashSet<>();
 			
 	public Request() {

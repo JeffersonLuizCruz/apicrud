@@ -15,6 +15,7 @@ import com.financial.entity.Address;
 import com.financial.entity.Category;
 import com.financial.entity.City;
 import com.financial.entity.Customer;
+import com.financial.entity.ItemRequest;
 import com.financial.entity.Payment;
 import com.financial.entity.PaymentSlip;
 import com.financial.entity.Product;
@@ -33,7 +34,7 @@ public class FinancialTest {
 	@Autowired private CityRepository cityRepository;
 	@Autowired private StateRepository stateRepository;
 	@Autowired private RequestRepository requestRepository;
-	@Autowired private PaymentRepository paymentRepository;
+	@Autowired private ItemRequestRepository itemRepository;
 
 	
 	@Test
@@ -96,6 +97,15 @@ public class FinancialTest {
 		request.get().setPayment(paySlip);
 		
 		requestRepository.save(request.get());
+	}
+	@Test
+	public void saveItemRequestTest() {
+		Optional<Request> request = requestRepository.findById(1L);
+		Optional<Product> product = productRepository.findById(1L);
+		ItemRequest item = new ItemRequest(request.get(), product.get(), BigDecimal.valueOf(0), 1, BigDecimal.valueOf(25));
+		
+		
+		itemRepository.save(item);
 	}
 
 }
