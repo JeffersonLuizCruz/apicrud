@@ -9,7 +9,7 @@
 <p align="center">Exemplo de um Sistema E-Commerce</p>
 
 <div align="center">
-<img alt="Made by Jefferson Luiz"[![Linkedin Badge](https://img.shields.io/badge/-Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/jefferson-luiz-cruz-0aa13a59/)](https://www.linkedin.com/in/jefferson-luiz-cruz-0aa13a59/) >
+![GitHub repo size](https://img.shields.io/github/repo-size/JeffersonLuizCruz/financial)
 </div>
 
 <p align="center">
