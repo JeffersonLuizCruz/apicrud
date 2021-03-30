@@ -8,7 +8,7 @@
 
 <p align="center">Exemplo de um Sistema E-Commerce</p>
 
-![GitHub repo size](https://img.shields.io/github/repo-size/JeffersonLuizCruz/financial)![Packagist License]|(https://img.shields.io/packagist/l/JeffersonLuizCruz/financial)
+![GitHub repo size](https://img.shields.io/github/repo-size/JeffersonLuizCruz/financial)|![Packagist License](https://img.shields.io/packagist/l/JeffersonLuizCruz/financial)
 
 <p align="center">
   <a href="#-sobre">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
