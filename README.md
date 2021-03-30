@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="RVM" src="https://github.com/ravarmes/scv-backend-spring/blob/master/assets/logo.jpg" />
+    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/financial/blob/main/src/main/resources/tamplates/ecommerce.png" />
 </h1>
 
 <h3 align="center">
