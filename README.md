@@ -16,6 +16,7 @@
   <a href="#-links">Links</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-licenca">Licença</a>
 </p>
+
 ## :page_with_curl: Sobre o projeto <a name="-sobre"/></a>
 
 > É proposto o desenvolvimento de um Sistema de E-Commerce, que vai informatizar as funções de pedido, pagamento e forma de pagamento: boleto ou cartão.
