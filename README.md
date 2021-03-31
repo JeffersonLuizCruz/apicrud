@@ -14,7 +14,7 @@
   <a href="#-sobre">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-instalacao">Diagrama de Classe</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-links">Links</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-licenca">Licença</a>
+  <a href="#-contato">Contato</a>
 </p>
 
 ## :page_with_curl: Sobre o projeto <a name="-sobre"/></a>
