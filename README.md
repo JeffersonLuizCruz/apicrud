@@ -25,3 +25,6 @@ O sistema deve permitir o cadastro de pelo menos um administrador do sistema. Es
 responsabilidade sobre todas as inclusões e alterações que serão feitas na aplicação. O e-commerce deve possibilitar o cadastramento dos clientes além dos dados essenciais para efetuar uma compra. Ao efetuar o pedido, adicionando os itens e quantidade, o cliente poderá optar a forma de pagamento a ser utilizada(Boleto ou Cartão de Crédito e sua parcela). A compra só será confirmada a partir do momento em que for validada a forma de pagamento.
 
 ## :page_with_curl: Diagrama de Classe <a name="-diagrama"/></a>
+<h1 align="center">
+    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/financial/blob/main/src/main/resources/tamplates/Classe%20UML3.png" />
+</h1>
