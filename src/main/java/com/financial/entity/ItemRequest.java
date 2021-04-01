@@ -36,7 +36,7 @@ public class ItemRequest implements Serializable{
 	public Request getRequest() {
 		return id.getRequest();
 	}
-	
+
 	public Product getProduct() {
 		return id.getProduct();
 	}

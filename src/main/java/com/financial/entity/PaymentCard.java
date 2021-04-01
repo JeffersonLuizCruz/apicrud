@@ -5,15 +5,15 @@ import javax.persistence.Entity;
 import com.financial.entity.enums.StagePayment;
 
 @Entity
-public class CardPayment extends Payment{
+public class PaymentCard extends Payment{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer installment;
 
-	public CardPayment() {
+	public PaymentCard() {
 	}
 
-	public CardPayment(Long id, StagePayment stage, Request request, Integer installment) {
+	public PaymentCard(Long id, StagePayment stage, Request request, Integer installment) {
 		super(id, stage, request);
 		this.installment = installment;
 	}
