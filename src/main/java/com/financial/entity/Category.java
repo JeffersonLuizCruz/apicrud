@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -26,7 +25,6 @@ public class Category implements Serializable{
 	private String name;
 	
 	//@ManyToMany(mappedBy = "categories")
-	@JsonIgnore
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name = "categories_products",
 			joinColumns = @JoinColumn(name = "category_id"),

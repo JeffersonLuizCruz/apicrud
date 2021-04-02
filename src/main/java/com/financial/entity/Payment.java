@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.financial.entity.enums.StagePayment;
 
 @Entity
@@ -18,6 +19,7 @@ public abstract class Payment implements Serializable{
 	private Long id;
 	private Integer stage;
 	
+	@JsonIgnore
 	@OneToOne
 	@MapsId
 	@JoinColumn(name = "request_id")

@@ -3,12 +3,14 @@ package com.financial.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.financial.entity.Customer;
 import com.financial.repository.CustomerRepository;
 import com.financial.repository.reposervice.CustomerService;
 import com.financial.service.exception.NotFoundException;
 
+@Service
 public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired private CustomerRepository customerRepository;

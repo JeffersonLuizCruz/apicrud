@@ -10,13 +10,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.financial.entity.enums.TypeCustomer;
 
 @Entity
@@ -36,11 +36,12 @@ public class Customer implements Serializable{
 	private Set<String> phones = new HashSet<>();
 	
 	//unidirecional
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "request_id")
 	private List<Request> requests = new ArrayList<>();
 	
 	//@OneToMany(mappedBy = "customer")
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "address_id")
 	private List<Address> address = new ArrayList<>();

@@ -3,12 +3,14 @@ package com.financial.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.financial.entity.Category;
 import com.financial.repository.CategoryRepository;
 import com.financial.repository.reposervice.CategoryService;
 import com.financial.service.exception.NotFoundException;
 
+@Service
 public class CategoryServiceImpl implements CategoryService{
 	
 	@Autowired private CategoryRepository categoryRepository;
