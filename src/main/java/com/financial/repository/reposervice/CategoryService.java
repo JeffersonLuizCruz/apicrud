@@ -1,4 +1,4 @@
-package com.financial.service.faces;
+package com.financial.repository.reposervice;
 
 import com.financial.entity.Category;
 
