@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.financial.service.exception.IntegrityViolationException;
 import com.financial.service.exception.NotFoundException;
 
 @ControllerAdvice
@@ -22,6 +23,12 @@ public class GlobalException extends ResponseEntityExceptionHandler{
 	public ResponseEntity<ApiError> handlerNotFoundException(NotFoundException ex){
 		ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(), ex.getMessage(), OffsetDateTime.now());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
+	
+	@ExceptionHandler(IntegrityViolationException.class)
+	public ResponseEntity<ApiError> handlerIntegrityViolationException(IntegrityViolationException ex){
+		ApiError error = new ApiError(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), OffsetDateTime.now());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
 	
 	@Override

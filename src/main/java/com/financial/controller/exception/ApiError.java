@@ -3,11 +3,15 @@ package com.financial.controller.exception;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ApiError implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer code;
 	private String message;
+	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private OffsetDateTime date;
 	
 	
