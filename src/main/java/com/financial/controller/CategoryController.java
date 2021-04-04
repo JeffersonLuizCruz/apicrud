@@ -1,6 +1,7 @@
 package com.financial.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.financial.dto.requestdto.CategoryRequestDto;
+import com.financial.dto.responsedto.CategoryResponseDto;
 import com.financial.entity.Category;
 import com.financial.event.Event;
 import com.financial.service.CategoryServiceImpl;
@@ -37,25 +40,28 @@ public class CategoryController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Category> saveCategory(@Valid @RequestBody Category category, HttpServletResponse response){
+	public ResponseEntity<CategoryResponseDto> saveCategory(@Valid @RequestBody CategoryRequestDto categoryDto, HttpServletResponse response){
+		Category category = categoryDto.transformToCategory();
 		Category createCategory = categoryService.save(category);
 		publisher.publishEvent(new Event(this, response, createCategory.getId()));
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(createCategory);
+		return ResponseEntity.status(HttpStatus.CREATED).body(CategoryResponseDto.transformToCategory(createCategory));
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Category> updateCategory(@PathVariable Long id, @Valid @RequestBody Category category){
+	public ResponseEntity<CategoryResponseDto> updateCategory(@PathVariable Long id, @Valid @RequestBody CategoryRequestDto categoryDto){
+		Category category = categoryDto.transformToCategory();
 		Category editCategory = categoryService.update(id, category);
 		
-		return ResponseEntity.ok(editCategory);
+		return ResponseEntity.ok(CategoryResponseDto.transformToCategory(editCategory));
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Category>> listAllCategory(){
+	public ResponseEntity<List<CategoryResponseDto>> listAllCategory(){
 		List<Category> list = categoryService.listAll();
+		List<CategoryResponseDto> listDto = list.stream().map(result -> new CategoryResponseDto(result)).collect(Collectors.toList());  
 		
-		return ResponseEntity.ok(list);
+		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@DeleteMapping(value = "/{id}")

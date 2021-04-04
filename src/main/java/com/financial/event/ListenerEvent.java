@@ -2,11 +2,15 @@ package com.financial.event;
 
 import java.net.URI;
 
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+
+@Component
 public class ListenerEvent implements ApplicationListener<Event>{
 
 	@Override
