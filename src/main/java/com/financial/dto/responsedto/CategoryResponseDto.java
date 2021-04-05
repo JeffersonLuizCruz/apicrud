@@ -11,18 +11,14 @@ public class CategoryResponseDto implements Serializable{
 	private String name;
 	
 	
-	
-	public CategoryResponseDto() {
+	private CategoryResponseDto(Long id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 	
 	public CategoryResponseDto(Category category) {
 		id = category.getId();
 		name = category.getName();
-	}
-
-	private CategoryResponseDto(Long id, String name) {
-		this.id = id;
-		this.name = name;
 	}
 
 	public static CategoryResponseDto transformToCategory(Category category) {
@@ -31,7 +27,6 @@ public class CategoryResponseDto implements Serializable{
 	}
 
 	
-
 	public Long getId() {
 		return id;
 	}

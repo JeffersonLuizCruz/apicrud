@@ -54,7 +54,7 @@ public class Customer implements Serializable{
 		this.name = name;
 		this.email = email;
 		this.cpf = cpf;
-		this.type = type.getCod();
+		this.type = (type == null) ? null : type.getCod(); // Evita o nullPointException
 	}
 
 	public Long getId() {
