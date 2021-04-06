@@ -58,6 +58,7 @@ public class CustomerRequestDto implements Serializable{
 	private String telephone3;
 
 	private Long cityId;
+	private Long stateId;
 	
 	
 	public CustomerRequestDto() {
@@ -73,7 +74,7 @@ public class CustomerRequestDto implements Serializable{
 			@NotEmpty(message = "Preenchimento obrigatório") String number, String complement, String district,
 			@NotEmpty(message = "Preenchimento obrigatório") String zipCode,
 			@NotEmpty(message = "Preenchimento obrigatório") String telephone1, String telephone2, String telephone3,
-			Long cityId) {
+			Long cityId, Long stateId) {
 		
 		this.name = name;
 		this.email = email;
@@ -89,13 +90,10 @@ public class CustomerRequestDto implements Serializable{
 		this.telephone2 = telephone2;
 		this.telephone3 = telephone3;
 		this.cityId = cityId;
+		this.stateId = stateId;
 	}
 
 
-	public CustomerRequestDto(String name, String email) {
-		this.name = name;
-		this.email = email;
-	}
 	
 	public Customer transformToCustomer() {
 		Customer customer = new Customer(null, this.name, this.email, null, null);
@@ -104,7 +102,7 @@ public class CustomerRequestDto implements Serializable{
 	}
 	
 	public Customer transformToNewCustomer() {
-		State state = new State(null, null);
+		State state = new State(this.stateId, null);
 		City city = new City(this.cityId, null, state);
 		Address address = new Address(null, this.street, this.number, this.complement, this.district, this.zipCode, city);
 		Customer customer = new Customer(null, this.name, this.email, this.cpf, TypeCustomer.toEnum(getType()));
@@ -261,6 +259,18 @@ public class CustomerRequestDto implements Serializable{
 	public void setCityId(Long cityId) {
 		this.cityId = cityId;
 	}
+
+
+	public Long getStateId() {
+		return stateId;
+	}
+
+
+	public void setStateId(Long stateId) {
+		this.stateId = stateId;
+	}
+	
+	
 	
 		
 	

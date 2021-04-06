@@ -23,7 +23,7 @@ public class State implements Serializable{
 	private String name;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "state", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "state")
 	private List<City> cities = new ArrayList<>();
 
 	public State() {

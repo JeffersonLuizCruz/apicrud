@@ -29,7 +29,7 @@ public class Address implements Serializable{
 //	@JoinColumn(name = "customer_id")
 //	private Customer customer;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
 	
