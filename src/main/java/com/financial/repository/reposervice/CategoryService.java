@@ -8,7 +8,7 @@ public interface CategoryService {
 	
 	public Category getById(Long id);
 	public Category save(Category category);
-	public Category update(Long id, Category category);
+	public Category update(Category category);
 	public List<Category> listAll();
 	public void delete(Long id);
 

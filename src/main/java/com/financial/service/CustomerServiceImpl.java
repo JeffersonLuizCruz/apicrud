@@ -9,8 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.financial.entity.Customer;
+import com.financial.repository.AddressRepository;
 import com.financial.repository.CustomerRepository;
 import com.financial.repository.reposervice.CustomerService;
 import com.financial.service.exception.IntegrityViolationException;
@@ -20,6 +22,7 @@ import com.financial.service.exception.NotFoundException;
 public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired private CustomerRepository customerRepository;
+	@Autowired private AddressRepository addressRepository;
 
 	@Override
 	public Customer getById(Long id) {
@@ -28,9 +31,12 @@ public class CustomerServiceImpl implements CustomerService{
 		return result.get();
 	}
 
+	@Transactional
 	@Override
 	public Customer save(Customer customer) {
+		customer.setId(null);
 		Customer createCategory = customerRepository.save(customer);
+		addressRepository.saveAll(createCategory.getAddress());
 		
 		return createCategory;
 	}

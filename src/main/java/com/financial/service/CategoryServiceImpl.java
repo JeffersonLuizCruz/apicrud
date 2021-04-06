@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -38,10 +37,10 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 
 	@Override
-	public Category update(Long id, Category category) {
-		Category editCategory = getById(id);
+	public Category update(Category category) {
+		Category editCategory = getById(category.getId());
 		
-		BeanUtils.copyProperties(category, editCategory, "id");
+		editCategory.setName(category.getName());
 		
 		return categoryRepository.save(editCategory);
 	}

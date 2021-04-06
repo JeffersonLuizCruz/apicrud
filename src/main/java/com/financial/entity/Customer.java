@@ -36,12 +36,13 @@ public class Customer implements Serializable{
 	private Set<String> phones = new HashSet<>();
 	
 	//unidirecional
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "request_id")
 	private List<Request> requests = new ArrayList<>();
 	
 	//@OneToMany(mappedBy = "customer")
-	@JsonIgnore
+	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "address_id")
 	private List<Address> address = new ArrayList<>();
