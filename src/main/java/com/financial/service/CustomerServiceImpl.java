@@ -15,6 +15,7 @@ import com.financial.entity.Customer;
 import com.financial.repository.AddressRepository;
 import com.financial.repository.CustomerRepository;
 import com.financial.repository.reposervice.CustomerService;
+import com.financial.service.exception.BadRequestException;
 import com.financial.service.exception.IntegrityViolationException;
 import com.financial.service.exception.NotFoundException;
 
@@ -35,10 +36,17 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer save(Customer customer) {
 		customer.setId(null);
-		Customer createCategory = customerRepository.save(customer);
-		addressRepository.saveAll(createCategory.getAddress());
+		try {
+			customerRepository.findByEmail(customer.getEmail());
+		} catch (Exception e) {
+			throw new BadRequestException("Email já existente");
+		}
+				
 		
-		return createCategory;
+		Customer createCustomer = customerRepository.save(customer);
+		addressRepository.saveAll(createCustomer.getAddress());
+		
+		return createCustomer;
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+
 import com.financial.controller.exception.FieldMessage;
 import com.financial.dto.requestdto.CustomerRequestDto;
 import com.financial.entity.enums.TypeCustomer;
@@ -13,6 +14,7 @@ import com.financial.service.validation.util.BR;
 
 public class CustomerInsertValidator implements ConstraintValidator<CustomerInsert, CustomerRequestDto>{
 
+	
 	@Override
 	public void initialize(CustomerInsert customerInsert) {
 		// TODO Auto-generated method stub
@@ -30,6 +32,7 @@ public class CustomerInsertValidator implements ConstraintValidator<CustomerInse
 		if(customerRequestDto.getType().equals(TypeCustomer.LEGAL_ENTITY.getCod()) && !BR.isValidCNPJ(customerRequestDto.getCpf())) {
 			list.add(new FieldMessage("cpf", "CNPJ Inválido."));
 		}
+		
 		
 		for(FieldMessage e : list) {
 			context.disableDefaultConstraintViolation();

@@ -70,11 +70,21 @@ public class FinancialTest {
 		
 
 		customer.getPhones().addAll(Set.of("88053521", "88053522"));
+		customer.getAddress().addAll(List.of(address));
 		
 		stateRepository.save(state);
 		cityRepository.save(city);
-		addressRepository.save(address);
 		customerRepository.save(customer);
+	}
+	
+	@Test
+	public void saveItemRequestTest() {
+		Optional<Request> request = requestRepository.findById(1L);
+		Optional<Product> product = productRepository.findById(1L);
+		ItemRequest item = new ItemRequest(request.get(), product.get(), BigDecimal.valueOf(0), 1, BigDecimal.valueOf(25));
+		
+		
+		itemRepository.save(item);
 	}
 	
 	@Test
@@ -98,14 +108,6 @@ public class FinancialTest {
 		
 		requestRepository.save(request.get());
 	}
-	@Test
-	public void saveItemRequestTest() {
-		Optional<Request> request = requestRepository.findById(1L);
-		Optional<Product> product = productRepository.findById(1L);
-		ItemRequest item = new ItemRequest(request.get(), product.get(), BigDecimal.valueOf(0), 1, BigDecimal.valueOf(25));
-		
-		
-		itemRepository.save(item);
-	}
+
 
 }

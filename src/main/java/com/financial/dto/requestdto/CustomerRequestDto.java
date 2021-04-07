@@ -13,7 +13,7 @@ import com.financial.entity.State;
 import com.financial.entity.enums.TypeCustomer;
 import com.financial.service.validation.CustomerInsert;
 
-// Notação personalizada de validação de cpj e cnpj
+// Anotação personalizada de validação de cpj e cnpj
 @CustomerInsert
 public class CustomerRequestDto implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -97,13 +97,13 @@ public class CustomerRequestDto implements Serializable{
 	}
 
 
-	
+	// [PUT]
 	public Customer transformToCustomer() {
 		Customer customer = new Customer(null, this.name, this.email, null, null);
 		
 		return customer;
 	}
-	
+	// [POST]
 	public Customer transformToNewCustomer() {
 		State state = new State(this.stateId, null);
 		City city = new City(this.cityId, null, state);
