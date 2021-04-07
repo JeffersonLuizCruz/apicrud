@@ -11,7 +11,10 @@ import com.financial.entity.City;
 import com.financial.entity.Customer;
 import com.financial.entity.State;
 import com.financial.entity.enums.TypeCustomer;
+import com.financial.service.validation.CustomerInsert;
 
+// Notação personalizada de validação de cpj e cnpj
+@CustomerInsert
 public class CustomerRequestDto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
