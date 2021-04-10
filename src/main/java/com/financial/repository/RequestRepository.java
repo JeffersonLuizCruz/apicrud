@@ -7,5 +7,6 @@ import com.financial.entity.Request;
 
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long>{
+	
 
 }
