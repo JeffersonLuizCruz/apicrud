@@ -51,9 +51,18 @@ public class FinancialTest {
 		Product p5 = new Product(null, "Caneta", BigDecimal.valueOf(1.5));
 		Product p6 = new Product(null, "Mouse", BigDecimal.valueOf(05));
 		
+		
+		
 		cat1.getProducts().addAll(Arrays.asList(p3, p4, p5));
 		cat2.getProducts().addAll(Arrays.asList(p1, p2));
 		cat3.getProducts().addAll(Arrays.asList(p6));
+		
+		p1.getCategories().addAll(List.of(cat2));
+		p2.getCategories().addAll(List.of(cat2));
+		p3.getCategories().addAll(List.of(cat1));
+		p4.getCategories().addAll(List.of(cat1));
+		p5.getCategories().addAll(List.of(cat1));
+		p6.getCategories().addAll(List.of(cat3));
 		
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6));
@@ -65,8 +74,9 @@ public class FinancialTest {
 
 		State state = new State(null, "Pernambuco");
 		City city = new City(null, "Ipojuca", state);
-		Address address = new Address(null, "Cavalo Marinho", "15", "Didinho", "Ipojuca", "5592000", city);
 		Customer customer = new Customer(null, "Jefferson Luiz", "jefferson@gmail.com", "08575874490", TypeCustomer.NATURAL_PERSON);
+		Address address = new Address(null, "Cavalo Marinho", "15", "Didinho", "Ipojuca", "5592000", customer, city);
+		
 		
 
 		customer.getPhones().addAll(Set.of("88053521", "88053522"));
@@ -75,6 +85,17 @@ public class FinancialTest {
 		stateRepository.save(state);
 		cityRepository.save(city);
 		customerRepository.save(customer);
+	}
+	
+	@Test
+	public void saveRequestTest() {
+		Optional<Customer> customer = customerRepository.findById(1L);
+		Optional<Address> address = addressRepository.findById(1L);
+		
+		Request request = new Request(null, OffsetDateTime.now(), address.get(), customer.get());
+			
+		requestRepository.save(request);
+		
 	}
 	
 	@Test
@@ -87,17 +108,7 @@ public class FinancialTest {
 		itemRepository.save(item);
 	}
 	
-	@Test
-	public void saveRequestTest() {
-		Optional<Customer> customer = customerRepository.findById(1L);
-		Optional<Address> address = addressRepository.findById(1L);
-		
-		Request request1 = new Request(null, OffsetDateTime.now(), address.get());
-		customer.get().getRequests().addAll(List.of(request1));
-		
-		customerRepository.save(customer.get());
-		
-	}
+
 	
 	@Test
 	public void savePaymentTest() {

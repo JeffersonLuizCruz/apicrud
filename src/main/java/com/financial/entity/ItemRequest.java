@@ -25,8 +25,8 @@ public class ItemRequest implements Serializable{
 	}
 
 	public ItemRequest(Request request, Product product, BigDecimal discount, Integer amount, BigDecimal price) {
-		this.id.setRequest(request);
-		this.id.setProduct(product);
+		this.id.setRequest(request); // ItemRequestPK
+		this.id.setProduct(product); // ItemRequestPK
 		this.discount = discount;
 		this.amount = amount;
 		this.price = price;

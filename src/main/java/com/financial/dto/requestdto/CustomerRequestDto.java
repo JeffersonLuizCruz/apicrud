@@ -107,8 +107,9 @@ public class CustomerRequestDto implements Serializable{
 	public Customer transformToNewCustomer() {
 		State state = new State(this.stateId, null);
 		City city = new City(this.cityId, null, state);
-		Address address = new Address(null, this.street, this.number, this.complement, this.district, this.zipCode, city);
 		Customer customer = new Customer(null, this.name, this.email, this.cpf, TypeCustomer.toEnum(getType()));
+		Address address = new Address(null, this.street, this.number, this.complement, this.district, this.zipCode, customer, city);
+		
 		
 		customer.getAddress().add(address);
 		customer.getPhones().add(this.telephone1);
