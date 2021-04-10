@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,15 +30,15 @@ public class Product implements Serializable{
 	private BigDecimal price;
 	
 
-//	@JsonIgnore
-//	@ManyToMany
-//	@JoinTable(name = "products_categories",
-//			joinColumns = @JoinColumn(name = "product_id"),
-//			inverseJoinColumns = @JoinColumn(name = "category_id"))
-//	private List<Category> categories = new ArrayList<>();
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "products_categories",
+			joinColumns = @JoinColumn(name = "product_id"),
+			inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private List<Category> categories = new ArrayList<>();
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "id.product", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "id.product")
 	private Set<ItemRequest> items = new HashSet<>();
 	
 	public Product() {
@@ -81,6 +83,14 @@ public class Product implements Serializable{
 		this.price = price;
 	}
 
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
 	public Set<ItemRequest> getItems() {
 		return items;
 	}
@@ -88,6 +98,7 @@ public class Product implements Serializable{
 	public void setItems(Set<ItemRequest> items) {
 		this.items = items;
 	}
+	
 
 	@Override
 	public int hashCode() {

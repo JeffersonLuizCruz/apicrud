@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,21 +35,22 @@ public class Request implements Serializable{
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
-//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//	@JoinColumn(name = "customer_id")
-//	private Customer customer;
+	@ManyToOne
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
 
-	@OneToMany(mappedBy = "id.request", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "id.request")
 	private Set<ItemRequest> items = new HashSet<>();
 			
 	public Request() {
 	}
 
-	public Request(Long id, OffsetDateTime instant, Address address) {
+	public Request(Long id, OffsetDateTime instant, Address address, Customer customer) {
 		super();
 		this.id = id;
 		this.instant = instant;
 		this.address = address;
+		this.customer = customer;
 	}
 	
 
@@ -84,6 +84,14 @@ public class Request implements Serializable{
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public Set<ItemRequest> getItems() {

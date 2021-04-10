@@ -11,11 +11,9 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,19 +33,15 @@ public class Customer implements Serializable{
 	private Integer type;
 	
 	@ElementCollection
-	@CollectionTable(name="TELEPHONE")
+	@CollectionTable(name="phones")
 	private Set<String> phones = new HashSet<>();
 	
-	//unidirecional
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "request_id")
+	@OneToMany(mappedBy = "customer")
 	private List<Request> requests = new ArrayList<>();
 	
-	//@OneToMany(mappedBy = "customer")
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "address_id")
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Address> address = new ArrayList<>();
 
 	public Customer() {
