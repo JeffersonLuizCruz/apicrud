@@ -31,6 +31,7 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public Category save(Category category) {
+		category.setId(null);
 		Category createCategory = categoryRepository.save(category);
 		
 		return createCategory;
