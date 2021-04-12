@@ -16,20 +16,29 @@ public class ItemRequest implements Serializable{
 	@EmbeddedId
 	private ItemRequestPK id = new ItemRequestPK();
 	
-	private BigDecimal discount; // Desconto
-	private Integer amount; // Quantidade
-	private BigDecimal price; // Preço
+	private String discount; // Desconto
+	private String amount; // Quantidade
+	private String price; // Preço
 	
 	
 	public ItemRequest() {
 	}
 
-	public ItemRequest(Request request, Product product, BigDecimal discount, Integer amount, BigDecimal price) {
+	public ItemRequest(Request request, Product product, String discount, String amount, String price) {
 		this.id.setRequest(request); // ItemRequestPK
 		this.id.setProduct(product); // ItemRequestPK
 		this.discount = discount;
 		this.amount = amount;
 		this.price = price;
+	}
+	
+	public BigDecimal getSubTotal() {
+		
+		BigDecimal total = new BigDecimal(getPrice())
+													.subtract(new BigDecimal(getDiscount()))
+													.multiply(new BigDecimal(getAmount()));
+		
+		return total;
 	}
 	
 	@JsonIgnore
@@ -49,27 +58,27 @@ public class ItemRequest implements Serializable{
 		this.id = id;
 	}
 
-	public BigDecimal getDiscount() {
+	public String getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(BigDecimal discount) {
+	public void setDiscount(String discount) {
 		this.discount = discount;
 	}
 
-	public Integer getAmount() {
+	public String getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Integer amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
-	public BigDecimal getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

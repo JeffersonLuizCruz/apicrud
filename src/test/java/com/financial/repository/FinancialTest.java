@@ -102,7 +102,7 @@ public class FinancialTest {
 	public void saveItemRequestTest() {
 		Optional<Request> request = requestRepository.findById(1L);
 		Optional<Product> product = productRepository.findById(1L);
-		ItemRequest item = new ItemRequest(request.get(), product.get(), BigDecimal.valueOf(0), 1, BigDecimal.valueOf(25));
+		ItemRequest item = new ItemRequest(request.get(), product.get(), "150", "2", "2000");
 		
 		
 		itemRepository.save(item);

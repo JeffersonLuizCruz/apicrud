@@ -1,6 +1,7 @@
 package com.financial.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -51,6 +52,15 @@ public class Request implements Serializable{
 		this.instant = instant;
 		this.address = address;
 		this.customer = customer;
+	}
+	
+	public BigDecimal getValueTotal() {
+		BigDecimal soma = new BigDecimal("0.0");
+		
+		for(ItemRequest ir: items) {
+			soma = soma.add(ir.getSubTotal());
+		}
+		return soma;
 	}
 	
 
