@@ -37,6 +37,7 @@ public class CustomerServiceImpl implements CustomerService{
 	public Customer save(Customer customer) {
 		customer.setId(null);
 		try {
+			// O Email é unique na base de dados
 			customerRepository.findByEmail(customer.getEmail());
 		} catch (Exception e) {
 			throw new BadRequestException("Email já existente");

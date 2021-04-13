@@ -44,18 +44,20 @@ public class FinancialTest {
 		Category cat2 = new Category(null, "Informática");
 		Category cat3 = new Category(null, "Acessório de TI");
 		
-		Product p1 = new Product(null, "Computador", BigDecimal.valueOf(2000));
-		Product p2 = new Product(null, "Notebook Aple", BigDecimal.valueOf(7000));
-		Product p3 = new Product(null, "Folha A4", BigDecimal.valueOf(25));
-		Product p4 = new Product(null, "Lápis", BigDecimal.valueOf(1));
-		Product p5 = new Product(null, "Caneta", BigDecimal.valueOf(1.5));
-		Product p6 = new Product(null, "Mouse", BigDecimal.valueOf(05));
+		Product p1 = new Product(null, "Computador", new BigDecimal("2500"));
+		Product p2 = new Product(null, "Notebook Aple", new BigDecimal("7000"));
+		Product p3 = new Product(null, "Folha A4", new BigDecimal("25"));
+		Product p4 = new Product(null, "Lápis", new BigDecimal("1.5"));
+		Product p5 = new Product(null, "Caneta", new BigDecimal("2"));
+		Product p6 = new Product(null, "Mouse", new BigDecimal("7.5"));
 		
 		
 		
 		cat1.getProducts().addAll(Arrays.asList(p3, p4, p5));
 		cat2.getProducts().addAll(Arrays.asList(p1, p2));
 		cat3.getProducts().addAll(Arrays.asList(p6));
+		
+		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
 		p1.getCategories().addAll(List.of(cat2));
 		p2.getCategories().addAll(List.of(cat2));
@@ -64,7 +66,7 @@ public class FinancialTest {
 		p5.getCategories().addAll(List.of(cat1));
 		p6.getCategories().addAll(List.of(cat3));
 		
-		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6));
 		
 	}

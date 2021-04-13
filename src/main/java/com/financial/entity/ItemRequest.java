@@ -42,12 +42,20 @@ public class ItemRequest implements Serializable{
 	}
 	
 	@JsonIgnore
-	public Request getRequest() {
+	public Request getRequest() { // obs
 		return id.getRequest();
 	}
+	
+	public void setRequest(Request request) { // obs
+		id.setRequest(request);
+	}
 
-	public Product getProduct() {
+	public Product getProduct() { // obs
 		return id.getProduct();
+	}
+	
+	public void setProduct(Product product) { // obs
+		id.setProduct(product);
 	}
 
 	public ItemRequestPK getId() {

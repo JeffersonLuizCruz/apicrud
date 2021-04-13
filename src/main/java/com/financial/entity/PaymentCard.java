@@ -2,14 +2,20 @@ package com.financial.entity;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.financial.entity.enums.StagePayment;
 
 @Entity
+@JsonTypeName("paymentCard")
 public class PaymentCard extends Payment{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer installment;
-
+	
+	
+	
+	
+	
 	public PaymentCard() {
 	}
 
