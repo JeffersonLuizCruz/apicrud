@@ -1,15 +1,17 @@
 package com.financial.service;
 
-import java.util.Calendar;
+import java.time.OffsetDateTime;
+
+import org.springframework.stereotype.Service;
 
 import com.financial.entity.PaymentSlip;
-
+// OBS: Enquanto estiviver com essa notação porque não foi testando essa classe.
+// Classe de abstração para teste do vencimento de um pagamento
+@Service
 public class PaymentSlipService {
-
-	public void preencherPagamentoComBoleto(PaymentSlip pagto, Date instanteDoPedido) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(instanteDoPedido);
-		cal.add(Calendar.DAY_OF_MONTH, 7);
-		pagto.setDataVencimento(cal.getTime());
+															// instanteDoPedido
+	public void requestPaymentSlip(PaymentSlip paymentSlip, OffsetDateTime requestTime) {
+		
+		paymentSlip.setDueDate(requestTime.plusDays(7));
 	}
 }

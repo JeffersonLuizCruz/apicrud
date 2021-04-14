@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.financial.entity.PaymentSlip;
 import com.financial.entity.Request;
 import com.financial.entity.enums.StagePayment;
 import com.financial.repository.RequestRepository;
@@ -16,6 +17,7 @@ import com.financial.service.exception.NotFoundException;
 public class RequestServiceImpl implements RequestService{
 
 	@Autowired private RequestRepository requestRepository;
+	@Autowired private PaymentSlipService paymentSlipService;
 	
 	@Override
 	public Request getById(Long id) {
@@ -32,6 +34,11 @@ public class RequestServiceImpl implements RequestService{
 		request.getPayment().setStage(StagePayment.PENDING);
 		// O pedido precisa conhecer o pagamento
 		request.getPayment().setRequest(request);
+		
+		if (request.getPayment() instanceof PaymentSlip) {
+			PaymentSlip paymentSlip = (PaymentSlip) request.getPayment();
+			paymentSlipService.requestPaymentSlip(paymentSlip, request.getInstant());
+		}
 		return null;
 	}
 
