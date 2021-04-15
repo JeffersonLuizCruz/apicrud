@@ -22,9 +22,28 @@
 > É proposto o desenvolvimento de um Sistema de E-Commerce, que vai informatizar as funções de pedido, pagamento e forma de pagamento: boleto ou cartão.
 
 O sistema deve permitir o cadastro de pelo menos um administrador do sistema. Este terá a
-responsabilidade sobre todas as inclusões e alterações que serão feitas na aplicação. O e-commerce deve possibilitar o cadastramento dos clientes além dos dados essenciais para efetuar uma compra. Ao efetuar o pedido, adicionando os itens e quantidade, o cliente poderá optar a forma de pagamento a ser utilizada(Boleto ou Cartão de Crédito e sua parcela). A compra só será confirmada a partir do momento em que for validada a forma de pagamento.
+responsabilidade sobre todas as inclusões e alterações que serão feitas na aplicação. O e-commerce deve possibilitar o cadastramento dos clientes além dos dados essenciais para efetuar uma compra. Ao efetuar o pedido, adicionando os itens e quantidade, o cliente poderá optar a forma de pagamento a ser utilizada(Boleto ou Cartão de Crédito e suas parcelas). A compra só será confirmada a partir do momento em que for validada a forma de pagamento.
 
 ## :page_with_curl: Diagrama de Classe <a name="-diagrama"/></a>
 <h1 align="center">
     <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/financial/blob/main/src/main/resources/tamplates/Classe%20UML3.png" />
 </h1>
+
+## Tecnologia:
+- [x] Java 11<br>
+- [x] Spring Boot 2.4.4<br>
+- [x] Spring Data - JPA/Hibernate<br>
+- [x] Banco de Dados PostgreSQL<br>
+- [ ] Spring Secutity - OAuth 2<br>
+- [ ] Front-end Ionic<br>
+- [ ] Implementação no Heroku<br>
+- [ ] Amazon S3<br>
+
+## Construção do Projeto:
+- [x] Criação de Interface Service (garantir baixo acoplamento)<br>
+- [x] CRUD (ORM Hibernate - Ambiente de teste)<br>
+- [x] Exception Personalizada
+- [x] Consulta e Busca Paginada
+- [ ] Autenticação e Autorização (JWT)
+- [ ] Servidor de Email
+
