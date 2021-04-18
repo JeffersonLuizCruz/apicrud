@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financial.dto.requestdto.CategoryRequestDto;
-import com.financial.dto.responsedto.CategoryResponseDto;
-import com.financial.entity.Category;
 import com.financial.entity.Request;
 import com.financial.event.Event;
 import com.financial.service.RequestServiceImpl;
@@ -39,7 +36,7 @@ public class RequestController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> saveCategory(@Valid @RequestBody Request request, HttpServletResponse response){
+	public ResponseEntity<Request> saveCategory(@Valid @RequestBody Request request, HttpServletResponse response){
 		Request createRequest = requestService.save(request);
 		publisher.publishEvent(new Event(this, response, createRequest.getId()));
 		
