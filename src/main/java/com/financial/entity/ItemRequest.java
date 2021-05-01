@@ -16,15 +16,15 @@ public class ItemRequest implements Serializable{
 	@EmbeddedId
 	private ItemRequestPK id = new ItemRequestPK();
 	
-	private String discount; // Desconto
-	private String amount; // Quantidade
-	private String price; // Preço
+	private BigDecimal discount; // Desconto
+	private BigDecimal amount; // Quantidade
+	private BigDecimal price; // Preço
 	
 	
 	public ItemRequest() {
 	}
 
-	public ItemRequest(Request request, Product product, String discount, String amount, String price) {
+	public ItemRequest(Request request, Product product, BigDecimal discount, BigDecimal amount, BigDecimal price) {
 		this.id.setRequest(request); // ItemRequestPK
 		this.id.setProduct(product); // ItemRequestPK
 		this.discount = discount;
@@ -33,10 +33,7 @@ public class ItemRequest implements Serializable{
 	}
 	
 	public BigDecimal getSubTotal() {
-		
-		BigDecimal total = new BigDecimal(getPrice())
-													.subtract(new BigDecimal(getDiscount()))
-													.multiply(new BigDecimal(getAmount()));
+		BigDecimal total = getPrice().subtract(discount).multiply(amount);
 		
 		return total;
 	}
@@ -66,27 +63,27 @@ public class ItemRequest implements Serializable{
 		this.id = id;
 	}
 
-	public String getDiscount() {
+	public BigDecimal getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(String discount) {
+	public void setDiscount(BigDecimal discount) {
 		this.discount = discount;
 	}
 
-	public String getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 
-	public String getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
