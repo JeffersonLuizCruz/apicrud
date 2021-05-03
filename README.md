@@ -48,7 +48,7 @@ As informações da confirmação do pedido são: número, data e horário do pe
 - [x] Banco de Dados PostgreSQL<br>
 - [ ] Spring Secutity - OAuth 2<br>
 - [ ] Front-end Ionic<br>
-- [ ] Implementação no Heroku<br>
+- [x] Implementação no Heroku<br>
 - [ ] Amazon S3<br>
 
 ## Construção do Projeto:
@@ -57,5 +57,5 @@ As informações da confirmação do pedido são: número, data e horário do pe
 - [x] Exception Personalizada
 - [x] Consulta e Busca Paginada
 - [ ] Autenticação e Autorização (JWT)
-- [ ] Servidor de Email
+- [ ] Serviço de Email
 
