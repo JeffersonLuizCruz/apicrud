@@ -191,7 +191,7 @@ public class DBService {
 		stateRepository.saveAll(Arrays.asList(est1, est2));
 		cityRepository.saveAll(Arrays.asList(c1, c2, c3));
 		
-		Customer cli1 = new Customer(null, "Maria Silva", "nelio.cursos@gmail.com", "36378912377", TypeCustomer.NATURAL_PERSON);
+		Customer cli1 = new Customer(null, "Maria Silva", "nelio.cursos@gmail.com", "08575874470", TypeCustomer.NATURAL_PERSON);
 		
 		cli1.getPhones().addAll(Arrays.asList("27363323", "93838393"));
 		
@@ -209,17 +209,17 @@ public class DBService {
 		addressRepository.saveAll(Arrays.asList(e1, e2, e3));
 		
 		
-		String data1 = "30/03/2021 10:32";
-		String data2 = "10/14/2021 19:35";
-		String paymentDate = "20/10/2017 00:00";
+		String data1 = "2021-09-30 14:27:15.103+02";
+		String data2 = "2021-10-10 14:27:15.103+02";
+		String paymentDate = "2021-10-20 00:00:00.000+02";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSX");
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		OffsetDateTime odt1 = OffsetDateTime.parse(data1, formatter);
 		OffsetDateTime odt2 = OffsetDateTime.parse(data2, formatter);
 		OffsetDateTime odtPayDay = OffsetDateTime.parse(paymentDate, formatter);
 		
-		Request ped1 = new Request(null, odt1, e1, cli1);
-		Request ped2 = new Request(null, odt2, e2, cli1);
+		Request ped1 = new Request(null, odt1.minusHours(0), e1, cli1);
+		Request ped2 = new Request(null, odt2.minusHours(0), e2, cli1);
 		
 		Payment pagto1 = new PaymentCard(null, StagePayment.SETTLED, ped1, 6);
 		ped1.setPayment(pagto1);
