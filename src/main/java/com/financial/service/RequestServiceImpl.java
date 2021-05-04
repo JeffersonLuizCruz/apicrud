@@ -27,6 +27,7 @@ public class RequestServiceImpl implements RequestService{
 	@Autowired private PaymentRepository paymentRepository;
 	@Autowired private ItemRequestRepository itemRepository;
 	@Autowired private ProductServiceImpl productService;
+	@Autowired private EmailService emailService;
 	
 	
 	@Override
@@ -63,7 +64,8 @@ public class RequestServiceImpl implements RequestService{
 			ir.setRequest(request);
 		}
 		itemRepository.saveAll(request.getItems());
-		System.out.println(request);
+		emailService.sendOrderConfirmationEmail(request);
+		//System.out.println(request);
 		return request;
 	}
 
