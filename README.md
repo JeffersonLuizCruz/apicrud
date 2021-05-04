@@ -57,5 +57,5 @@ As informações da confirmação do pedido são: número, data e horário do pe
 - [x] Exception Personalizada
 - [x] Consulta e Busca Paginada
 - [ ] Autenticação e Autorização (JWT)
-- [ ] Serviço de Email
+- [x] Serviço de Email
 
