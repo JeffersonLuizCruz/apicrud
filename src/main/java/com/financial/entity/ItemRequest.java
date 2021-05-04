@@ -111,6 +111,22 @@ public class ItemRequest implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(getProduct().getName());
+		builder.append(", Qtd: ");
+		builder.append(getAmount());
+		builder.append(", Preço Unitário: ");
+		builder.append(getPrice());
+		builder.append(", SubTotal: ");
+		builder.append(getSubTotal());
+		builder.append("\n");
+				
+		return builder.toString();
+	}
+	
 	
 	
 }

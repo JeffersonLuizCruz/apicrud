@@ -3,6 +3,7 @@ package com.financial.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -136,6 +137,31 @@ public class Request implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		OffsetDateTime odt = OffsetDateTime.now();
+		builder.append("Pedido número: ");
+		builder.append(getId());
+		builder.append(", Instante: ");
+		builder.append(odt.format(formatter));
+		builder.append(", Cliente: ");
+		builder.append(getCustomer().getName());
+		builder.append(", Situação do pagamento: ");
+		builder.append(getPayment().getStage().getDescription());
+		builder.append("\nDetalhes:\n");
+		
+		for (ItemRequest ip : getItems()) {
+			builder.append(ip.toString());
+		}
+		builder.append("Valor total: ");
+		builder.append(getValueTotal());
+		return builder.toString();
+	}
+	
+	
 	
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.financial.entity.Category;
 import com.financial.repository.CategoryRepository;
@@ -29,6 +30,7 @@ public class CategoryServiceImpl implements CategoryService{
 		return result.get();
 	}
 
+	@Transactional
 	@Override
 	public Category save(Category category) {
 		category.setId(null);
@@ -37,6 +39,7 @@ public class CategoryServiceImpl implements CategoryService{
 		return createCategory;
 	}
 
+	@Transactional
 	@Override
 	public Category update(Category category) {
 		Category editCategory = getById(category.getId());

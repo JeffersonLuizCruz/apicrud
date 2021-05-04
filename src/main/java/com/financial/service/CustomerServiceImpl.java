@@ -50,6 +50,7 @@ public class CustomerServiceImpl implements CustomerService{
 		return createCustomer;
 	}
 
+	@Transactional
 	@Override
 	public Customer update(Customer customer) {
 		Customer editCustomer = getById(customer.getId());

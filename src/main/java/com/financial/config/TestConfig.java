@@ -17,7 +17,9 @@ public class TestConfig {
 	
 	/**
 	 * Método responsável por instanciar no bando de dados no Profile de teste.
+	 * 
 	 * */
+	
 	@Bean
 	public boolean instantiateDatabase() throws ParseException {
 		dbService.instantiateTestDatabase();

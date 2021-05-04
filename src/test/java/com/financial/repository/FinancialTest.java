@@ -17,6 +17,7 @@ import com.financial.entity.City;
 import com.financial.entity.Customer;
 import com.financial.entity.ItemRequest;
 import com.financial.entity.Payment;
+import com.financial.entity.PaymentCard;
 import com.financial.entity.PaymentSlip;
 import com.financial.entity.Product;
 import com.financial.entity.Request;
@@ -113,13 +114,23 @@ public class FinancialTest {
 
 	
 	@Test
-	public void savePaymentTest() {
-		Optional<Request> request = requestRepository.findById(1L);
+	public void savePaymentSlipTest() {
+		Optional<Request> requestSlip = requestRepository.findById(1L);
 		
-		Payment paySlip = new PaymentSlip(null, StagePayment.SETTLED, request.get(), OffsetDateTime.now(), null);
-		request.get().setPayment(paySlip);
+		Payment paySlip = new PaymentSlip(null, StagePayment.SETTLED, requestSlip.get(), OffsetDateTime.now(), null);
+		requestSlip.get().setPayment(paySlip);
 		
-		requestRepository.save(request.get());
+		requestRepository.save(	requestSlip.get());
+	}
+	
+	@Test
+	public void savePaymentCardTest() {
+		Optional<Request> requestCard = requestRepository.findById(1L);
+		
+		Payment payCard = new PaymentCard(null, StagePayment.PENDING, requestCard.get(), 6);
+		requestCard.get().setPayment(payCard);
+		
+		requestRepository.save(requestCard.get());
 	}
 
 
