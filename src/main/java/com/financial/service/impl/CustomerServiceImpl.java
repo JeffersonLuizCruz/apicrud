@@ -45,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new BadRequestException("Email já existente");
 		}
 				
-		
+		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 		Customer createCustomer = customerRepository.save(customer);
 		addressRepository.saveAll(createCustomer.getAddress());
 		

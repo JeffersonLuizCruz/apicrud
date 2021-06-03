@@ -31,6 +31,8 @@ public class Customer implements Serializable{
 	private String email;
 	private String cpf;
 	private Integer type;
+	
+	@JsonIgnore
 	private String password;
 	
 	@ElementCollection

@@ -21,7 +21,7 @@ public class CustomerRequestDto implements Serializable{
 
 	
 	@NotEmpty(message="Preenchimento obrigatório - Nome")
-	@Size(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")
+	@Size(min=3, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")
 	private String name;
 	
 	@NotEmpty(message="Preenchimento obrigatório - Email")
@@ -42,7 +42,7 @@ public class CustomerRequestDto implements Serializable{
 	private String number;
 	private String complement;
 	private String district;
-	@NotEmpty(message="Preenchimento obrigatório - CEP")
+	//@NotEmpty(message="Preenchimento obrigatório - CEP")
 	private String zipCode;
 	
 	
