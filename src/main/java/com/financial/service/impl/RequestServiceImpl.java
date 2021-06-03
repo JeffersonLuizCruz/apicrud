@@ -1,4 +1,4 @@
-package com.financial.service;
+package com.financial.service.impl;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -15,7 +15,7 @@ import com.financial.entity.enums.StagePayment;
 import com.financial.repository.ItemRequestRepository;
 import com.financial.repository.PaymentRepository;
 import com.financial.repository.RequestRepository;
-import com.financial.repository.reposervice.RequestService;
+import com.financial.service.RequestService;
 import com.financial.service.exception.NotFoundException;
 
 @Service
@@ -27,7 +27,6 @@ public class RequestServiceImpl implements RequestService{
 	@Autowired private PaymentRepository paymentRepository;
 	@Autowired private ItemRequestRepository itemRepository;
 	@Autowired private ProductServiceImpl productService;
-	@Autowired private EmailService emailService;
 	
 	
 	@Override
@@ -64,7 +63,7 @@ public class RequestServiceImpl implements RequestService{
 			ir.setRequest(request);
 		}
 		itemRepository.saveAll(request.getItems());
-		emailService.sendOrderConfirmationEmail(request);
+		//emailService.sendOrderConfirmationEmail(request);
 		//System.out.println(request);
 		return request;
 	}

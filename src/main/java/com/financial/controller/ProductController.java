@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financial.dto.responsedto.ProductResponseDto;
+import com.financial.dto.response.ProductResponseDto;
 import com.financial.entity.Product;
-import com.financial.service.ProductServiceImpl;
+import com.financial.service.impl.ProductServiceImpl;
 import com.financial.util.URL;
 
 @RestController

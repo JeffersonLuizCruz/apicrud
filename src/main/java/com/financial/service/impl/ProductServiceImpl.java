@@ -1,4 +1,4 @@
-package com.financial.service;
+package com.financial.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +13,7 @@ import com.financial.entity.Category;
 import com.financial.entity.Product;
 import com.financial.repository.CategoryRepository;
 import com.financial.repository.ProductRepository;
-import com.financial.repository.reposervice.ProductService;
+import com.financial.service.ProductService;
 import com.financial.service.exception.BadRequestException;
 
 

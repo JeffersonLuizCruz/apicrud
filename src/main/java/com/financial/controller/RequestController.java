@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.financial.entity.Request;
 import com.financial.event.Event;
-import com.financial.service.RequestServiceImpl;
+import com.financial.service.impl.RequestServiceImpl;
 
 @RestController
 @RequestMapping("requests")

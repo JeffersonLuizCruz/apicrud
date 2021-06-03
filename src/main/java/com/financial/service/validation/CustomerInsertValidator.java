@@ -8,7 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 
 
 import com.financial.controller.exception.FieldMessage;
-import com.financial.dto.requestdto.CustomerRequestDto;
+import com.financial.dto.request.CustomerRequestDto;
 import com.financial.entity.enums.TypeCustomer;
 import com.financial.service.validation.util.BR;
 

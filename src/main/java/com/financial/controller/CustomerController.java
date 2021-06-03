@@ -21,12 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financial.dto.requestdto.CustomerRequestDto;
-import com.financial.dto.responsedto.CustomerResponseDto;
-
+import com.financial.dto.request.CustomerRequestDto;
+import com.financial.dto.response.CustomerResponseDto;
 import com.financial.entity.Customer;
 import com.financial.event.Event;
-import com.financial.service.CustomerServiceImpl;
+import com.financial.service.impl.CustomerServiceImpl;
 
 @RestController
 @RequestMapping("customers")

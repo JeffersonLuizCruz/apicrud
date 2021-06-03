@@ -31,6 +31,7 @@ public class Customer implements Serializable{
 	private String email;
 	private String cpf;
 	private Integer type;
+	private String password;
 	
 	@ElementCollection
 	@CollectionTable(name="phones")
@@ -47,12 +48,13 @@ public class Customer implements Serializable{
 	public Customer() {
 	}
 
-	public Customer(Long id, String name, String email, String cpf, TypeCustomer type) {
+	public Customer(Long id, String name, String email, String cpf, TypeCustomer type, String password) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.cpf = cpf;
 		this.type = (type == null) ? null : type.getCod(); // Evita o nullPointException
+		this.password = password;
 	}
 
 	public Long getId() {
@@ -93,6 +95,14 @@ public class Customer implements Serializable{
 	//Método set editado
 	public void setType(TypeCustomer type) {
 		this.type = type.getCod();
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Set<String> getPhones() {

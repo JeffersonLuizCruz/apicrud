@@ -1,4 +1,4 @@
-package com.financial.dto.responsedto;
+package com.financial.dto.response;
 
 import java.io.Serializable;
 

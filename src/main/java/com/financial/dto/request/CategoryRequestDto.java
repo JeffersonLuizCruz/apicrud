@@ -1,4 +1,4 @@
-package com.financial.dto.requestdto;
+package com.financial.dto.request;
 
 import java.io.Serializable;
 

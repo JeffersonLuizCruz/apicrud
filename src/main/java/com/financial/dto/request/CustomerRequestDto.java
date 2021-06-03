@@ -1,4 +1,4 @@
-package com.financial.dto.requestdto;
+package com.financial.dto.request;
 
 import java.io.Serializable;
 
@@ -23,33 +23,25 @@ public class CustomerRequestDto implements Serializable{
 	@NotEmpty(message="Preenchimento obrigatório - Nome")
 	@Size(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")
 	private String name;
-
+	
 	@NotEmpty(message="Preenchimento obrigatório - Email")
 	@Email(message="Email inválido")
 	private String email;
 
 	@NotEmpty(message="Preenchimento obrigatório - CPF")
 	private String cpf;
-
 	private Integer type;
 	
-	
-	
-	//@NotEmpty(message="Preenchimento obrigatório - Password")
+	@NotEmpty(message="Preenchimento obrigatório - Password")
 	private String password;
-	
-	
 	
 	@NotEmpty(message="Preenchimento obrigatório - Street")
 	private String street;
 
 	@NotEmpty(message="Preenchimento obrigatório - Numéro")
 	private String number;
-
 	private String complement;
-
 	private String district;
-
 	@NotEmpty(message="Preenchimento obrigatório - CEP")
 	private String zipCode;
 	
@@ -99,7 +91,7 @@ public class CustomerRequestDto implements Serializable{
 
 	// [PUT]
 	public Customer transformToCustomer() {
-		Customer customer = new Customer(null, this.name, this.email, null, null);
+		Customer customer = new Customer(null, this.name, this.email, null, null, this.password);
 		
 		return customer;
 	}
@@ -107,7 +99,7 @@ public class CustomerRequestDto implements Serializable{
 	public Customer transformToNewCustomer() {
 		State state = new State(this.stateId, null);
 		City city = new City(this.cityId, null, state);
-		Customer customer = new Customer(null, this.name, this.email, this.cpf, TypeCustomer.toEnum(getType()));
+		Customer customer = new Customer(null, this.name, this.email, this.cpf, TypeCustomer.toEnum(getType()),this.password);
 		Address address = new Address(null, this.street, this.number, this.complement, this.district, this.zipCode, customer, city);
 		
 		

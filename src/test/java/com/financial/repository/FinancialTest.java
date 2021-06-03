@@ -10,6 +10,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.financial.entity.Address;
 import com.financial.entity.Category;
@@ -36,6 +37,7 @@ public class FinancialTest {
 	@Autowired private StateRepository stateRepository;
 	@Autowired private RequestRepository requestRepository;
 	@Autowired private ItemRequestRepository itemRepository;
+	@Autowired private BCryptPasswordEncoder passwordEncoder;
 
 	
 	@Test
@@ -77,7 +79,7 @@ public class FinancialTest {
 
 		State state = new State(null, "Pernambuco");
 		City city = new City(null, "Ipojuca", state);
-		Customer customer = new Customer(null, "Jefferson Luiz", "jefferson@gmail.com", "08575874490", TypeCustomer.NATURAL_PERSON);
+		Customer customer = new Customer(null, "Hugo", "jefferson@gmail.com", "08575874490", TypeCustomer.NATURAL_PERSON, passwordEncoder.encode("123456789"));
 		Address address = new Address(null, "Cavalo Marinho", "15", "Didinho", "Ipojuca", "5592000", customer, city);
 		
 		

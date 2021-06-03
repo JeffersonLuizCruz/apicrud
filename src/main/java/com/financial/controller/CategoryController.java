@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financial.dto.requestdto.CategoryRequestDto;
-import com.financial.dto.responsedto.CategoryResponseDto;
+import com.financial.dto.request.CategoryRequestDto;
+import com.financial.dto.response.CategoryResponseDto;
 import com.financial.entity.Category;
 import com.financial.event.Event;
-import com.financial.service.CategoryServiceImpl;
+import com.financial.service.impl.CategoryServiceImpl;
 
 @RestController
 @RequestMapping("categories")
