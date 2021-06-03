@@ -5,18 +5,21 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.financial.entity.enums.Perfil;
 import com.financial.entity.enums.TypeCustomer;
 
 @Entity
@@ -35,6 +38,10 @@ public class Customer implements Serializable{
 	@JsonIgnore
 	private String password;
 	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable
+	private Set<Integer> perfis = new HashSet<>();
+	
 	@ElementCollection
 	@CollectionTable(name="phones")
 	private Set<String> phones = new HashSet<>();
@@ -48,6 +55,7 @@ public class Customer implements Serializable{
 	private List<Address> address = new ArrayList<>();
 
 	public Customer() {
+		addPerfil(Perfil.CUSTOMER); // Por padrão todos terão um perfil cliente
 	}
 
 	public Customer(Long id, String name, String email, String cpf, TypeCustomer type, String password) {
@@ -57,6 +65,7 @@ public class Customer implements Serializable{
 		this.cpf = cpf;
 		this.type = (type == null) ? null : type.getCod(); // Evita o nullPointException
 		this.password = password;
+		addPerfil(Perfil.CUSTOMER); // Por padrão todos terão um perfil cliente
 	}
 
 	public Long getId() {
@@ -105,6 +114,14 @@ public class Customer implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	// Método editado
+	public Set<Perfil> getPerfis(){  // OBS
+		return perfis.stream().map(result -> Perfil.toEnum(result)).collect(Collectors.toSet());
+	}
+	// Metodo editado
+	public void addPerfil(Perfil perfil) { 	//OBS
+		perfis.add(perfil.getCod());
 	}
 
 	public Set<String> getPhones() {
