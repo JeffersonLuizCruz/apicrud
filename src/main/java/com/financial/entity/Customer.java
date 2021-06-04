@@ -38,8 +38,8 @@ public class Customer implements Serializable{
 	@JsonIgnore
 	private String password;
 	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
 	
 	@ElementCollection

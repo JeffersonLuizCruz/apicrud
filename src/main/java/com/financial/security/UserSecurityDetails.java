@@ -19,7 +19,7 @@ public class UserSecurityDetails implements UserDetails{
 	private String password;
 	private Collection<? extends GrantedAuthority> getAuthorities;
 	
-	public Long getid() {
+	public Long getId() {
 		return id;
 	}
 
@@ -72,6 +72,10 @@ public class UserSecurityDetails implements UserDetails{
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	
+	public boolean hasRole(Perfil perfil) {
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescription()));
 	}
 
 }

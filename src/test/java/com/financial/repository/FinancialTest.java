@@ -23,6 +23,7 @@ import com.financial.entity.PaymentSlip;
 import com.financial.entity.Product;
 import com.financial.entity.Request;
 import com.financial.entity.State;
+import com.financial.entity.enums.Perfil;
 import com.financial.entity.enums.StagePayment;
 import com.financial.entity.enums.TypeCustomer;
 
@@ -79,7 +80,8 @@ public class FinancialTest {
 
 		State state = new State(null, "Pernambuco");
 		City city = new City(null, "Ipojuca", state);
-		Customer customer = new Customer(null, "Hugo", "jefferson@gmail.com", "08575874490", TypeCustomer.NATURAL_PERSON, passwordEncoder.encode("123456789"));
+		Customer customer = new Customer(null, "Hugo", "hugo@gmail.com", "08575874490", TypeCustomer.NATURAL_PERSON, passwordEncoder.encode("123456789"));
+		customer.addPerfil(Perfil.ADMIN);
 		Address address = new Address(null, "Cavalo Marinho", "15", "Didinho", "Ipojuca", "5592000", customer, city);
 		
 		

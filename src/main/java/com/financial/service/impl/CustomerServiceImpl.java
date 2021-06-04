@@ -13,9 +13,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.financial.entity.Customer;
+import com.financial.entity.enums.Perfil;
 import com.financial.repository.AddressRepository;
 import com.financial.repository.CustomerRepository;
+import com.financial.security.UserSecurityDetails;
 import com.financial.service.CustomerService;
+import com.financial.service.UserService;
+import com.financial.service.exception.AuthorizationException;
 import com.financial.service.exception.BadRequestException;
 import com.financial.service.exception.IntegrityViolationException;
 import com.financial.service.exception.NotFoundException;
@@ -29,6 +33,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public Customer getById(Long id) {
+		verifyAuthenticated(id);
 		Optional<Customer> result = customerRepository.findById(id);
 		result.orElseThrow(() -> new NotFoundException("Não existe usuário com id " + id + ", Tipo: " + Customer.class.getName()));
 		return result.get();
@@ -95,6 +100,13 @@ public class CustomerServiceImpl implements CustomerService{
 		result.orElseThrow(() -> new NotFoundException("Não existe usuário com id " + id + ", Tipo: " + Customer.class.getName()));
 		
 		return result.get();
+	}
+	
+	private void verifyAuthenticated(Long id) {
+		UserSecurityDetails user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
 	}
 	
 

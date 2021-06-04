@@ -13,12 +13,19 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.financial.service.exception.AuthorizationException;
 import com.financial.service.exception.BadRequestException;
 import com.financial.service.exception.IntegrityViolationException;
 import com.financial.service.exception.NotFoundException;
 
 @ControllerAdvice
 public class GlobalException extends ResponseEntityExceptionHandler{
+	
+	@ExceptionHandler(AuthorizationException.class)
+	public ResponseEntity<ApiError> handlerNotFoundException(AuthorizationException ex){
+		ApiError error = new ApiError(HttpStatus.FORBIDDEN.value(), ex.getMessage(), OffsetDateTime.now());
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
+	}
 	
 	@ExceptionHandler(NotFoundException.class)
 	public ResponseEntity<ApiError> handlerNotFoundException(NotFoundException ex){

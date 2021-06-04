@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,6 +59,7 @@ public class CustomerController {
 		return ResponseEntity.ok(CustomerResponseDto.transformToCustomer(editCustomer));
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping
 	public ResponseEntity<List<CustomerResponseDto>> listAllCategory(){
 		List<Customer> list = customerService.listAll();
@@ -66,6 +68,7 @@ public class CustomerController {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteCategory(@PathVariable Long id){
 		customerService.delete(id);
@@ -73,6 +76,7 @@ public class CustomerController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping(value = "/page")
 	public ResponseEntity<Page<CustomerResponseDto>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 

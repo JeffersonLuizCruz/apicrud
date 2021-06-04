@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Optional<Customer> customer = customerRepository.findByEmail(email);
 		
-		if(customer.isEmpty()) {
+		if(customer.get() == null) {
 			throw new UsernameNotFoundException(email);
 		}
 		return new UserSecurityDetails(customer.get().getId(),
