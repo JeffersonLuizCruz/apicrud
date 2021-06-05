@@ -5,9 +5,13 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.financial.entity.Customer;
 import com.financial.entity.ItemRequest;
 import com.financial.entity.PaymentSlip;
 import com.financial.entity.Request;
@@ -15,7 +19,10 @@ import com.financial.entity.enums.StagePayment;
 import com.financial.repository.ItemRequestRepository;
 import com.financial.repository.PaymentRepository;
 import com.financial.repository.RequestRepository;
+import com.financial.security.UserSecurityDetails;
 import com.financial.service.RequestService;
+import com.financial.service.UserService;
+import com.financial.service.exception.AuthorizationException;
 import com.financial.service.exception.NotFoundException;
 
 @Service
@@ -66,6 +73,16 @@ public class RequestServiceImpl implements RequestService{
 		//emailService.sendOrderConfirmationEmail(request);
 		//System.out.println(request);
 		return request;
+	}
+	
+	public Page<Request> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		UserSecurityDetails user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		Customer cliente =  customerService.getById(user.getId());
+		return requestRepository.findByCustomer(cliente, pageRequest);
 	}
 
 }
