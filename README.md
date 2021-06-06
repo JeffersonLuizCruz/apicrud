@@ -46,7 +46,7 @@ As informações da confirmação do pedido são: número, data e horário do pe
 - [x] Spring Boot 2.4.4<br>
 - [x] Spring Data - JPA/Hibernate<br>
 - [x] Banco de Dados PostgreSQL<br>
-- [ ] Spring Secutity - OAuth 2<br>
+- [x] Spring Secutity - OAuth 2<br>
 - [ ] Front-end Ionic<br>
 - [x] Implementação no Heroku<br>
 - [ ] Amazon S3<br>
