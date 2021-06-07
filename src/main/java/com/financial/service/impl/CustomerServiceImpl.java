@@ -1,5 +1,7 @@
 package com.financial.service.impl;
 
+import java.awt.image.BufferedImage;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.financial.entity.Customer;
 import com.financial.entity.enums.Perfil;
@@ -18,6 +21,7 @@ import com.financial.repository.AddressRepository;
 import com.financial.repository.CustomerRepository;
 import com.financial.security.UserSecurityDetails;
 import com.financial.service.CustomerService;
+import com.financial.service.S3Service;
 import com.financial.service.UserService;
 import com.financial.service.exception.AuthorizationException;
 import com.financial.service.exception.BadRequestException;
@@ -30,6 +34,8 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired private CustomerRepository customerRepository;
 	@Autowired private AddressRepository addressRepository;
 	@Autowired private BCryptPasswordEncoder passwordEncoder;
+	@Autowired private S3Service s3Service;
+	//@Autowired private private ImageService imageService;
 
 	@Override
 	public Customer getById(Long id) {
@@ -93,6 +99,21 @@ public class CustomerServiceImpl implements CustomerService{
 	public Page<Customer> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return customerRepository.findAll(pageRequest);
+	}
+	
+	public URI uploadProfilePicture(MultipartFile multipartFile) {
+		UserSecurityDetails user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
+		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		jpgImage = imageService.cropSquare(jpgImage);
+		jpgImage = imageService.resize(jpgImage, size);
+		
+		String fileName = prefix + user.getId() + ".jpg";
+		
+		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
 	
 	private Customer verifyIfExist(Long id) {

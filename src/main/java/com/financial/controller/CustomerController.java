@@ -1,5 +1,6 @@
 package com.financial.controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.financial.dto.request.CustomerRequestDto;
 import com.financial.dto.response.CustomerResponseDto;
@@ -87,6 +89,12 @@ public class CustomerController {
 		Page<Customer> list = customerService.findPage(page, linesPerPage, orderBy, direction);
 		Page<CustomerResponseDto> listDto = list.map(result -> new CustomerResponseDto(result));  
 		return ResponseEntity.ok().body(listDto);
+	}
+	
+	@PostMapping(value="/picture")
+	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) {
+		URI uri = customerService.uploadProfilePicture(file);
+		return ResponseEntity.created(uri).build();
 	}
 
 }
