@@ -24,10 +24,10 @@
 O sistema deve permitir o cadastro de pelo menos um administrador do sistema. Este terá a
 responsabilidade sobre todas as inclusões e alterações que serão feitas na aplicação. O e-commerce deve possibilitar o cadastramento dos clientes além dos dados essenciais para efetuar uma compra. Ao efetuar o pedido, adicionando os itens e quantidade, o cliente poderá optar a forma de pagamento a ser utilizada(Mock de Boleto ou Cartão de Crédito e suas parcelas). A compra só será confirmada a partir do momento em que for validada a forma de pagamento.
 
-## Caso de Uso - Registro de um Pedido
+## 01 - Requisito Funcional - Registro de um Pedido
 
 ### O cliente seleciona um produto para adicionar ao carrinho de compras:
-Quando um produto já existente no carrinho é selecionado, a quantidade deste produto no carrinho deve ser incrementada, caso contrário o produto é devolvido ao carrinho com quantidade 1.
+Quando um produto já existente no carrinho é selecionado, a quantidade deste produto deve ser incrementada, caso contrário o produto é devolvido ao carrinho com quantidade 1.
 
 ### O sistema exibe o carrinho de compras:
 As informações do carrinho de compras são: nome, quantidade e preço unitário de cada produto (não será dado desconto), o subtotal de cada item do carrinho, e o valor total do carrinho.
