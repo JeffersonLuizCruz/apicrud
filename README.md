@@ -17,7 +17,11 @@
 
 ## :page_with_curl: Sobre o projeto <a name="-sobre"/></a>
 
-> É proposto o desenvolvimento de um Sistema de E-Commerce, que vai informatizar as funções de pedido, pagamento e forma de pagamento: boleto ou cartão.
+> O objetivo dessa API REST é explorar as boas práticas de modelagem de entidades usando JPA.
+- Foi aplicado o conceito de relacionamento de entidade unidirecional e bidirecional visando as vantagens e desvantagens de cada uma delas; 
+- Entre o relacionamento do uso de cardinalidade foi abordado o conceito de Entidade Composta entre a entidade Product, ItemRequest e Request.; 
+- E o uso das anotation do javax persistence: @ElementCollection, @CollectionTable ...
+
 
 O sistema deve permitir o cadastro de pelo menos um administrador do sistema. Este terá a
 responsabilidade sobre todas as inclusões e alterações que serão feitas na aplicação. O e-commerce deve possibilitar o cadastramento dos clientes além dos dados essenciais para efetuar uma compra. Ao efetuar o pedido, adicionando os itens e quantidade, o cliente poderá optar a forma de pagamento a ser utilizada(Mock de Boleto ou Cartão de Crédito e suas parcelas). A compra só será confirmada a partir do momento em que for validada a forma de pagamento.
